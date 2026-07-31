@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammed Abdul Rafay - Personal Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+      color: #38bdf8;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #94a3b8;
+    }
+
+    .gallery-section {
+      margin: 40px 0;
+    }
+
+    .gallery-section h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 10px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-card {
+      background: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.2);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .contact-section {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .contact-section h2 {
+      margin-bottom: 12px;
+      color: #38bdf8;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .contact-links a {
+      color: #f8fafc;
+      text-decoration: none;
+      background: #334155;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      background: #0284c7;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header / Name Section -->
+    <header>
+      <h1>Mohammed Abdul Rafay</h1>
+      <p>Developer & Student</p>
+    </header>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-card"><img src="/images/1774241685747.png" alt="Image 1"></div>
+        <div class="gallery-card"><img src="/images/FB_IMG_1777340100000.jpg" alt="Image 2"></div>
+        <div class="gallery-card"><img src="/images/IMG_20240322_142554.jpg" alt="Image 3"></div>
+        <div class="gallery-card"><img src="/images/IMG_20241022_172319_829.webp" alt="Image 4"></div>
+        <div class="gallery-card"><img src="/images/IMG-20240913-WA0100.jpg" alt="Image 5"></div>
+        <div class="gallery-card"><img src="/images/IMG-20241202-WA0060.jpg" alt="Image 6"></div>
+        <div class="gallery-card"><img src="/images/IMG-20241202-WA0062.jpg" alt="Image 7"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250125-WA0028.jpg" alt="Image 8"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250531-WA0023.jpg" alt="Image 9"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250531-WA0040.jpg" alt="Image 10"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250531-WA0044.jpg" alt="Image 11"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250618-WA0020.jpg" alt="Image 12"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250702-WA0034.jpg" alt="Image 13"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250702-WA0036.jpg" alt="Image 14"></div>
+        <div class="gallery-card"><img src="/images/IMG-20250712-WA0057.jpg" alt="Image 15"></div>
+        <div class="gallery-card"><img src="/images/IMG-20251025-WA0030.jpg" alt="Image 16"></div>
+        <div class="gallery-card"><img src="/images/IMG-20251207-WA0003.jpg" alt="Image 17"></div>
+        <div class="gallery-card"><img src="/images/IMG-20251207-WA0009.jpg" alt="Image 18"></div>
+        <div class="gallery-card"><img src="/images/IMG-20260215-WA0046.jpg" alt="Image 19"></div>
+        <div class="gallery-card"><img src="/images/IMG-20260215-WA0047.jpg" alt="Image 20"></div>
+        <div class="gallery-card"><img src="/images/IMG-20260419-WA0004.jpg" alt="Image 21"></div>
+        <div class="gallery-card"><img src="/images/IMG-20260427-WA0045.jpg" alt="Image 22"></div>
+        <div class="gallery-card"><img src="/images/IMG20251201163853_01.jpg" alt="Image 23"></div>
+        <div class="gallery-card"><img src="/images/IMG20251201163853_03.jpg" alt="Image 24"></div>
+        <div class="gallery-card"><img src="/images/Snapchat-775781863.jpg" alt="Image 25"></div>
+        <div class="gallery-card"><img src="/images/Snapchat-1814954628.jpg" alt="Image 26"></div>
+        <div class="gallery-card"><img src="/images/Snapchat-2139462222.jpg" alt="Image 27"></div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2>Get In Touch</h2>
+      <p>Feel free to reach out via email or connect on social platforms.</p>
+      <div class="contact-links">
+        <a href="mailto:your-email@example.com">Email Me</a>
+        <a href="https://github.com/rafay5451" target="_blank">GitHub</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Mohammed Abdul Rafay. All rights reserved.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
