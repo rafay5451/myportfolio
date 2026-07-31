@@ -3,393 +3,646 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohammed Abdul Rafay - Personal Gallery</title>
+  <title>Mohammed Abdul Rafay — Developer & Student</title>
+  <meta name="description" content="Personal gallery of Mohammed Abdul Rafay, developer and student." />
 
-  <!-- Google Fonts: Pinyon Script for Header & Outfit for Subheadings -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #0a0c12;
+      --bg-soft: #10141d;
+      --card: #141926;
+      --card-hover: #1a2132;
+      --border: rgba(255, 255, 255, 0.07);
+      --text: #e8ecf4;
+      --text-dim: #9aa3b5;
+      --accent: #6366f1;
+      --accent-2: #22d3ee;
+      --radius: 14px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: #0b0f19;
-      color: #f8fafc;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
-      padding: 20px;
-      position: relative;
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(600px 400px at 85% -10%, rgba(99, 102, 241, 0.14), transparent 60%),
+        radial-gradient(500px 350px at -10% 30%, rgba(34, 211, 238, 0.10), transparent 60%),
+        radial-gradient(500px 400px at 60% 110%, rgba(99, 102, 241, 0.08), transparent 60%);
     }
 
-    /* Canvas for Mouse Cursor Trail VFX */
-    #vfx-canvas {
+    body::before {
+      content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 99;
-    }
-
-    /* Full-Screen Animation Container */
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      inset: 0;
       z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
+      background-image: inherit;
+      background-size: 100% 100%;
     }
 
-    /* Ambient Floating Orbs */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      opacity: 0.5;
-      animation: float-fast 6s infinite alternate ease-in-out;
-    }
-
-    .orb-1 {
-      width: 400px;
-      height: 400px;
-      background: #00d2ff;
-      top: -50px;
-      left: -50px;
-    }
-
-    .orb-2 {
-      width: 500px;
-      height: 500px;
-      background: #7928ca;
-      bottom: -100px;
-      right: -50px;
-      animation-delay: -2s;
-      animation-duration: 8s;
-    }
-
-    .orb-3 {
-      width: 350px;
-      height: 350px;
-      background: #ff0080;
-      top: 35%;
-      left: 45%;
-      animation-delay: -4s;
-      animation-duration: 7s;
-    }
-
-    @keyframes float-fast {
-      0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-      }
-      50% {
-        transform: translate(180px, 120px) scale(1.25) rotate(180deg);
-      }
-      100% {
-        transform: translate(-120px, 200px) scale(0.85) rotate(360deg);
-      }
-    }
-
-    /* Starry Lights VFX */
-    .star {
-      position: absolute;
-      background: #ffffff;
-      border-radius: 50%;
-      opacity: 0;
-      box-shadow: 0 0 8px #38bdf8, 0 0 12px #ffffff;
-      animation: twinkle-fast 1.8s infinite ease-in-out;
-    }
-
-    @keyframes twinkle-fast {
-      0% {
-        opacity: 0.1;
-        transform: scale(0.4) translateY(0);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.6) translateY(-15px);
-        box-shadow: 0 0 15px #38bdf8, 0 0 25px #ffffff;
-      }
-      100% {
-        opacity: 0.1;
-        transform: scale(0.4) translateY(-30px);
-      }
-    }
-
-    /* Container for Layout */
     .container {
-      max-width: 1200px;
+      max-width: 1120px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
+      padding: 0 24px;
     }
 
-    /* Header Styling with Pinyon Script & Glowing Gradient */
-    header {
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 96px 0 64px;
       text-align: center;
-      padding: 40px 0 20px 0;
     }
 
-    header h1 {
-      font-family: 'Pinyon Script', cursive;
-      font-size: 4.8rem;
-      line-height: 1.1;
-      margin-bottom: 4px;
-      
-      /* Vibrant gradient color matching the background ambient glows */
-      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #ec4899 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      
-      /* Subtle glowing shadow */
-      filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.4));
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #94a3b8;
-      letter-spacing: 1px;
-    }
-
-    /* Gallery Section */
-    .gallery-section {
-      margin: 40px 0;
-    }
-
-    .gallery-section h2 {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      text-align: center;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 999px;
+      padding: 6px 16px;
       margin-bottom: 24px;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 10px;
-      color: #38bdf8;
-      text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    }
+
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+    }
+
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(100deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(99, 102, 241, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #5558e8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-ghost {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Gallery ---------- */
+    .gallery-section {
+      padding: 48px 0 24px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head .count {
+      font-size: 0.9rem;
+      color: var(--text-dim);
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: clamp(100px, 11vw, 150px);
+      grid-auto-flow: dense;
+      gap: 12px;
     }
 
-    /* Gallery Card */
     .gallery-card {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
+      position: relative;
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: var(--card);
+      border: 1px solid var(--border);
+      cursor: zoom-in;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
+
+    .gallery-card.big { grid-column: span 4; grid-row: span 2; }
+    .gallery-card.portrait { grid-column: span 2; grid-row: span 4; }
 
     .gallery-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      border-color: rgba(56, 189, 248, 0.8);
-      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), 0 12px 20px -5px rgba(0, 0, 0, 0.5);
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.45);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
     }
 
     .gallery-card img {
       width: 100%;
-      height: 260px;
+      height: 100%;
       object-fit: cover;
+      object-position: 50% 50%;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease, filter 0.3s ease, object-position 0.6s ease;
     }
 
     .gallery-card:hover img {
       transform: scale(1.06);
     }
 
-    /* Contact Section */
-    .contact-section {
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 35px;
-      border-radius: 16px;
-      text-align: center;
-      margin-top: 50px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    .gallery-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 7, 12, 0.55), transparent 45%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    .contact-section h2 {
-      font-family: 'Outfit', sans-serif;
-      margin-bottom: 12px;
-      color: #38bdf8;
-      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    .gallery-card:hover::after {
+      opacity: 1;
     }
 
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .contact-links a {
-      color: #f8fafc;
-      text-decoration: none;
-      background: rgba(51, 65, 85, 0.8);
-      padding: 12px 28px;
-      border-radius: 30px;
+    .gallery-card .zoom-hint {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      font-size: 0.75rem;
       font-weight: 600;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(10, 12, 18, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      padding: 5px 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 1;
+      pointer-events: none;
     }
 
-    .contact-links a:hover {
-      background: #0284c7;
-      box-shadow: 0 0 20px #0284c7;
-      transform: translateY(-3px);
+    .gallery-card:hover .zoom-hint {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
+    /* ---------- Lightbox ---------- */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 8, 13, 0.92);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 32px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: min(92vw, 1100px);
+      max-height: 86vh;
+      border-radius: 10px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      animation: zoomIn 0.25s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.94); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      background: rgba(10, 12, 18, 0.6);
+      border-radius: 999px;
+      padding: 6px 16px;
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-section {
+      padding: 48px 0 32px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 48px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.6), rgba(34, 211, 238, 0.6), transparent);
+    }
+
+    .contact-card h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      color: var(--text-dim);
+      margin-bottom: 28px;
+    }
+
+    /* ---------- Footer ---------- */
     footer {
       text-align: center;
-      margin-top: 50px;
-      color: #64748b;
-      font-size: 0.9rem;
+      padding: 40px 0 48px;
+      color: var(--text-dim);
+      font-size: 0.88rem;
+    }
+
+    /* ---------- Marquee ---------- */
+    .marquee {
+      overflow: hidden;
+      padding: 28px 0;
+      margin: 8px 0 16px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+      user-select: none;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 26s linear infinite;
+    }
+
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-track span {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      padding: 0 28px;
+    }
+
+    .marquee-track span.sep {
+      color: rgba(232, 236, 244, 0.25);
+      font-weight: 400;
+      padding: 0 44px;
+    }
+
+    .marquee-track span.fill {
+      background: linear-gradient(100deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .marquee-track span.outline {
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(232, 236, 244, 0.4);
+    }
+
+    @keyframes marquee-scroll {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ---------- Scroll reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 72px 0 48px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: clamp(80px, 26vw, 160px); gap: 8px; }
+      .gallery-card.big { grid-column: span 2; grid-row: span 2; }
+      .gallery-card.portrait { grid-column: span 1; grid-row: span 4; }
+      .gallery-card:nth-child(6n+3) { grid-column: span 1; grid-row: span 4; }
+      .gallery-card:nth-child(6n+5) { grid-column: span 1; grid-row: span 4; }
+      .lightbox-nav { width: 40px; height: 40px; }
+      .lightbox-prev { left: 8px; }
+      .lightbox-next { right: 8px; }
+      .container { padding: 0 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- VFX Canvas for Cursor Particle Trail -->
-  <canvas id="vfx-canvas"></canvas>
-
-  <!-- Background Animated Orbs & Fast Stars -->
-  <div class="bg-animation">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
-    <div class="star" style="top: 10%; left: 12%; width: 4px; height: 4px; animation-duration: 1.2s;"></div>
-    <div class="star" style="top: 20%; left: 35%; width: 5px; height: 5px; animation-duration: 1.8s; animation-delay: -0.4s;"></div>
-    <div class="star" style="top: 28%; left: 75%; width: 3px; height: 3px; animation-duration: 1.4s;"></div>
-    <div class="star" style="top: 45%; left: 18%; width: 6px; height: 6px; animation-duration: 2.1s; animation-delay: -0.8s;"></div>
-    <div class="star" style="top: 65%; left: 82%; width: 4px; height: 4px; animation-duration: 1.5s;"></div>
-    <div class="star" style="top: 85%; left: 42%; width: 5px; height: 5px; animation-duration: 1.9s; animation-delay: -1.2s;"></div>
-    <div class="star" style="top: 92%; left: 65%; width: 3px; height: 3px; animation-duration: 1.3s;"></div>
-    <div class="star" style="top: 12%; left: 88%; width: 4px; height: 4px; animation-duration: 1.7s;"></div>
-    <div class="star" style="top: 38%; left: 52%; width: 5px; height: 5px; animation-duration: 2.0s; animation-delay: -0.5s;"></div>
-    <div class="star" style="top: 58%; left: 10%; width: 4px; height: 4px; animation-duration: 1.6s;"></div>
-    <div class="star" style="top: 78%; left: 92%; width: 6px; height: 6px; animation-duration: 1.4s; animation-delay: -0.9s;"></div>
-    <div class="star" style="top: 22%; left: 8%; width: 3px; height: 3px; animation-duration: 1.8s;"></div>
-  </div>
-
   <div class="container">
-    <header>
-      <h1>Mohammed Abdul Rafay</h1>
-      <p>Developer & Student</p>
+    <header class="hero">
+      <span class="badge"><span class="dot"></span> Available for work</span>
+      <h1>Hey, I'm <span class="gradient">Mohammed Abdul Rafay</span></h1>
+      <p>Developer & Student — I love building things, taking photos, and exploring ideas. Welcome to my little corner of the internet.</p>
+      <div class="hero-actions">
+        <a href="#gallery" class="btn btn-primary">View Gallery</a>
+        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+      </div>
     </header>
 
-    <section class="gallery-section">
-      <h2>Gallery</h2>
-      <div class="gallery-grid">
-        <div class="gallery-card"><img src="/images/1774241685747.png" alt="Image 1"></div>
-        <div class="gallery-card"><img src="/images/FB_IMG_1777340100000.jpg" alt="Image 2"></div>
-        <div class="gallery-card"><img src="/images/IMG_20240322_142554.jpg" alt="Image 3"></div>
-        <div class="gallery-card"><img src="/images/IMG_20241022_172319_829.webp" alt="Image 4"></div>
-        <div class="gallery-card"><img src="/images/IMG-20240913-WA0100.jpg" alt="Image 5"></div>
-        <div class="gallery-card"><img src="/images/IMG-20241202-WA0060.jpg" alt="Image 6"></div>
-        <div class="gallery-card"><img src="/images/IMG-20241202-WA0062.jpg" alt="Image 7"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250125-WA0028.jpg" alt="Image 8"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250531-WA0023.jpg" alt="Image 9"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250531-WA0040.jpg" alt="Image 10"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250531-WA0044.jpg" alt="Image 11"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250618-WA0020.jpg" alt="Image 12"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250702-WA0034.jpg" alt="Image 13"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250702-WA0036.jpg" alt="Image 14"></div>
-        <div class="gallery-card"><img src="/images/IMG-20250712-WA0057.jpg" alt="Image 15"></div>
-        <div class="gallery-card"><img src="/images/IMG-20251025-WA0030.jpg" alt="Image 16"></div>
-        <div class="gallery-card"><img src="/images/IMG-20251207-WA0003.jpg" alt="Image 17"></div>
-        <div class="gallery-card"><img src="/images/IMG-20251207-WA0009.jpg" alt="Image 18"></div>
-        <div class="gallery-card"><img src="/images/IMG-20260215-WA0046.jpg" alt="Image 19"></div>
-        <div class="gallery-card"><img src="/images/IMG-20260215-WA0047.jpg" alt="Image 20"></div>
-        <div class="gallery-card"><img src="/images/IMG-20260419-WA0004.jpg" alt="Image 21"></div>
-        <div class="gallery-card"><img src="/images/IMG-20260427-WA0045.jpg" alt="Image 22"></div>
-        <div class="gallery-card"><img src="/images/IMG20251201163853_01.jpg" alt="Image 23"></div>
-        <div class="gallery-card"><img src="/images/IMG20251201163853_03.jpg" alt="Image 24"></div>
-        <div class="gallery-card"><img src="/images/Snapchat-775781863.jpg" alt="Image 25"></div>
-        <div class="gallery-card"><img src="/images/Snapchat-1814954628.jpg" alt="Image 26"></div>
-        <div class="gallery-card"><img src="/images/Snapchat-2139462222.jpg" alt="Image 27"></div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="fill">Rafay</span><span class="sep">&bull;</span><span class="outline">Vardhan</span><span class="sep">&bull;</span><span class="fill">Akshay</span><span class="sep">&bull;</span>
+        <span class="fill">Rafay</span><span class="sep">&bull;</span><span class="outline">Vardhan</span><span class="sep">&bull;</span><span class="fill">Akshay</span><span class="sep">&bull;</span>
       </div>
+    </div>
+
+    <section id="gallery" class="gallery-section reveal">
+      <div class="section-head">
+        <h2>Gallery</h2>
+        <span class="count">27 photos</span>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-card big" data-src="images/1774241685747.png" data-fx="0.5648" data-fy="0.344"><img src="images/thumbs/1774241685747.webp" alt="Photo 1" fetchpriority="high"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/FB_IMG_1777340100000.jpg" data-fx="0.517" data-fy="0.3178"><img src="images/thumbs/FB_IMG_1777340100000.webp" alt="Photo 2" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG_20240322_142554.jpg"><img src="images/thumbs/IMG_20240322_142554.webp" alt="Photo 3" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/IMG_20241022_172319_829.webp"><img src="images/thumbs/IMG_20241022_172319_829.webp" alt="Photo 4" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20240913-WA0100.jpg"><img src="images/thumbs/IMG-20240913-WA0100.webp" alt="Photo 5" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20241202-WA0060.jpg"><img src="images/thumbs/IMG-20241202-WA0060.webp" alt="Photo 6" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20241202-WA0062.jpg"><img src="images/thumbs/IMG-20241202-WA0062.webp" alt="Photo 7" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/IMG-20250125-WA0028.jpg" data-fx="0.4876" data-fy="0.465"><img src="images/thumbs/IMG-20250125-WA0028.webp" alt="Photo 8" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20250531-WA0023.jpg" data-fx="0.2753" data-fy="0.5835"><img src="images/thumbs/IMG-20250531-WA0023.webp" alt="Photo 9" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/IMG-20250531-WA0040.jpg" data-fx="0.2127" data-fy="0.5005"><img src="images/thumbs/IMG-20250531-WA0040.webp" alt="Photo 10" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20250531-WA0044.jpg" data-fx="0.3007" data-fy="0.5415"><img src="images/thumbs/IMG-20250531-WA0044.webp" alt="Photo 11" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20250618-WA0020.jpg"><img src="images/thumbs/IMG-20250618-WA0020.webp" alt="Photo 12" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20250702-WA0034.jpg"><img src="images/thumbs/IMG-20250702-WA0034.webp" alt="Photo 13" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/IMG-20250702-WA0036.jpg" data-fx="0.162" data-fy="0.5525"><img src="images/thumbs/IMG-20250702-WA0036.webp" alt="Photo 14" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20250712-WA0057.jpg"><img src="images/thumbs/IMG-20250712-WA0057.webp" alt="Photo 15" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/IMG-20251025-WA0030.jpg" data-fx="0.6665" data-fy="0.4037"><img src="images/thumbs/IMG-20251025-WA0030.webp" alt="Photo 16" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20251207-WA0003.jpg"><img src="images/thumbs/IMG-20251207-WA0003.webp" alt="Photo 17" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20251207-WA0009.jpg" data-fx="0.662" data-fy="0.1785"><img src="images/thumbs/IMG-20251207-WA0009.webp" alt="Photo 18" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20260215-WA0046.jpg"><img src="images/thumbs/IMG-20260215-WA0046.webp" alt="Photo 19" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/IMG-20260215-WA0047.jpg"><img src="images/thumbs/IMG-20260215-WA0047.webp" alt="Photo 20" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG-20260419-WA0004.jpg"><img src="images/thumbs/IMG-20260419-WA0004.webp" alt="Photo 21" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/IMG-20260427-WA0045.jpg" data-fx="0.609" data-fy="0.4827"><img src="images/thumbs/IMG-20260427-WA0045.webp" alt="Photo 22" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG20251201163853_01.jpg"><img src="images/thumbs/IMG20251201163853_01.webp" alt="Photo 23" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/IMG20251201163853_03.jpg"><img src="images/thumbs/IMG20251201163853_03.webp" alt="Photo 24" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/Snapchat-775781863.jpg"><img src="images/thumbs/Snapchat-775781863.webp" alt="Photo 25" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card portrait" data-src="images/Snapchat-1814954628.jpg" data-fx="0.4485" data-fy="0.4785"><img src="images/thumbs/Snapchat-1814954628.webp" alt="Photo 26" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+        <div class="gallery-card big" data-src="images/Snapchat-2139462222.jpg" data-fx="0.4076" data-fy="0.5255"><img src="images/thumbs/Snapchat-2139462222.webp" alt="Photo 27" loading="lazy" decoding="async"><span class="zoom-hint">View</span></div>
+      </div></div>
     </section>
 
-    <section class="contact-section">
-      <h2>Get In Touch</h2>
-      <p>Feel free to reach out via email or connect on social platforms.</p>
-      <div class="contact-links">
-        <a href="mailto:your-email@example.com">Email Me</a>
-        <a href="https://github.com/rafay5451" target="_blank">GitHub</a>
+    <section id="contact" class="contact-section reveal">
+      <div class="contact-card">
+        <h2>Get In Touch</h2>
+        <p>Feel free to reach out via email or connect on social platforms.</p>
+        <div class="hero-actions">
+          <a href="mailto:rafay2005451@gmail.com" class="btn btn-primary">Email Me</a>
+          <a href="https://github.com/rafay5451" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+        </div>
       </div>
     </section>
 
     <footer>
-      <p>&copy; 2026 Rafay Vardhan Akshay. All rights reserved.</p>
+      <p>&copy; 2026 Mohammed Abdul Rafay. All rights reserved.</p>
     </footer>
   </div>
 
-  <!-- Cursor Trail VFX Script -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous photo">&lsaquo;</button>
+    <img src="" alt="Photo preview">
+    <button class="lightbox-nav lightbox-next" aria-label="Next photo">&rsaquo;</button>
+    <div class="lightbox-counter"></div>
+  </div>
+
   <script>
-    const canvas = document.getElementById('vfx-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+    const cards = Array.from(document.querySelectorAll('.gallery-card'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const counter = lightbox.querySelector('.lightbox-counter');
+    let current = 0;
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function openLightbox(index) {
+      current = index;
+      lightboxImg.src = cards[current].dataset.src;
+      counter.textContent = (current + 1) + ' / ' + cards.length;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
 
-    window.addEventListener('mousemove', (e) => {
-      for (let i = 0; i < 3; i++) {
-        particles.push({
-          x: e.clientX,
-          y: e.clientY,
-          size: Math.random() * 4 + 1,
-          speedX: (Math.random() - 0.5) * 3,
-          speedY: (Math.random() - 0.5) * 3,
-          color: `hsl(${Math.random() * 60 + 190}, 100%, 70%)`,
-          life: 1
-        });
-      }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function move(dir) {
+      current = (current + dir + cards.length) % cards.length;
+      lightboxImg.src = cards[current].dataset.src;
+      counter.textContent = (current + 1) + ' / ' + cards.length;
+    }
+
+    cards.forEach((card, i) => card.addEventListener('click', () => openLightbox(i)));
+
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.lightbox-prev').addEventListener('click', () => move(-1));
+    lightbox.querySelector('.lightbox-next').addEventListener('click', () => move(1));
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
     });
 
-    function animateVFX() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particles.length; i++) {
-        let p = particles[i];
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.life;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') move(-1);
+      if (e.key === 'ArrowRight') move(1);
+    });
 
-        p.x += p.speedX;
-        p.y += p.speedY;
-        p.life -= 0.025;
-
-        if (p.life <= 0) {
-          particles.splice(i, 1);
-          i--;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
-      }
-      requestAnimationFrame(animateVFX);
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    /* ---------- Face-aware cropping (positions precomputed, baked as data-fx/data-fy) ---------- */
+    function centerOnFace(img, card) {
+      const fx = parseFloat(card.dataset.fx);
+      const fy = parseFloat(card.dataset.fy);
+      if (isNaN(fx) || isNaN(fy) || !img.complete || !img.naturalWidth) return;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      const rect = card.getBoundingClientRect();
+      const cw = rect.width, ch = rect.height;
+      const s = Math.max(cw / iw, ch / ih);
+      const vw = cw / s, vh = ch / s;
+      let px = 0.5, py = 0.5;
+      if (iw > vw) px = Math.min(1, Math.max(0, (fx * iw - vw / 2) / (iw - vw)));
+      if (ih > vh) py = Math.min(1, Math.max(0, (fy * ih - vh / 2) / (ih - vh)));
+      img.style.objectPosition = (px * 100).toFixed(2) + '% ' + (py * 100).toFixed(2) + '%';
     }
-    animateVFX();
+
+    document.querySelectorAll('.gallery-card').forEach((card) => {
+      const img = card.querySelector('img');
+      if (card.dataset.fx) {
+        if (img.complete && img.naturalWidth) centerOnFace(img, card);
+        else img.addEventListener('load', () => centerOnFace(img, card));
+        window.addEventListener('resize', () => centerOnFace(img, card));
+      }
+    });
   </script>
 </body>
 </html>
